@@ -1,5 +1,13 @@
-function index() {
-  return {};
+import { Routes, Route, Navigate } from "react-router-dom";
+
+function AppRouter() {
+  return (
+    <Routes>
+      <Route path="/pagina-inicial" element={<p>Página Inicial</p>} />
+
+      <Route path="*" element={<Navigate to="/pagina-inicial" />} />
+    </Routes>
+  );
 }
 
-export default index;
+export default AppRouter;
