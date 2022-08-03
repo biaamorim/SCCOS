@@ -1,5 +1,1 @@
-function index() {
-  return {};
-}
-
-export default index;
+export * from "./menu/MenuLateral";
