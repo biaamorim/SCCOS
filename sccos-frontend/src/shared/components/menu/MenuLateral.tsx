@@ -18,6 +18,7 @@ import { yellow } from "@mui/material/colors";
 import React, { ReactNode } from "react";
 import { useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 import { useDrawerContext } from "../../contexts/DrawerContext";
+import styles from "../../../ui/styles/MenuLateral.module.scss";
 
 interface Props {
   children: ReactNode;
