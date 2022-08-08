@@ -1,0 +1,36 @@
+import { useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Dashboard from "../pages/dashboard/Dashboard";
+import { useDrawerContext } from "../shared/contexts/DrawerContext";
+
+function AppRouter() {
+  const { setDrawerOptions } = useDrawerContext();
+  useEffect(() => {
+    setDrawerOptions([
+      {
+        label: "Página Inicial",
+        icon: "home",
+        path: "/pagina-inicial",
+      },
+      {
+        label: "Cadastro",
+        icon: "add",
+        path: "/pagina-cadastro",
+      },
+      {
+        label: "Listagem de Ordem de Serviço",
+        icon: "list",
+        path: "/pagina-de-listagem",
+      },
+    ]);
+  }, []);
+  return (
+    <Routes>
+      <Route path="/pagina-inicial" element={<Dashboard />} />
+
+      {/*<Route path="*" element={<Navigate to="/pagina-inicial" />} />*/}
+    </Routes>
+  );
+}
+
+export default AppRouter;
