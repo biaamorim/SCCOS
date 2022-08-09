@@ -1,0 +1,19 @@
+* {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.container {
+    .button {
+        justify-content: right !important;
+        margin: 0.5rem !important;
+        background-color: rgb(223, 220, 220) !important;
+        font-size: 0.8rem;
+        border-radius: 6px;
+        span {
+            color: black !important;
+        }
+        p {
+            color: black;
+        }
+    }
+}

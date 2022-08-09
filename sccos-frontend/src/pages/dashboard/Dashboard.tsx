@@ -5,7 +5,7 @@ function Dashboard() {
   return (
     <LayoutBasePagina
       titulo="Página Inicial"
-      FerramentaListagem={<FerramentaListagem mostrarInputBusca />}
+      barraFerramenta={<FerramentaListagem mostrarInputBusca />}
     >
       Testando
     </LayoutBasePagina>

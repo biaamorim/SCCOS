@@ -1,5 +1,5 @@
 import { Button, TextField, Box, Paper, Icon } from "@mui/material";
-import styles from "../../../ui/styles/barra-ferramenta/BarraFerramenta.module.scss";
+import styles from "../../../ui/styles/ferramenta-listagem/FerramentaListagem.module.scss";
 
 interface IFerramentasListagemProps {
   textoBusca?: string;
