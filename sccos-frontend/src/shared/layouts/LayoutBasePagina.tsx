@@ -13,13 +13,13 @@ import { useDrawerContext } from "../contexts/DrawerContext";
 interface LayoutBasePaginaProps {
   children: ReactNode;
   titulo: string;
-  barraFerramenta: ReactNode;
+  FerramentaListagem: ReactNode;
 }
 
 function LayoutBasePagina({
   children,
   titulo,
-  barraFerramenta,
+  FerramentaListagem,
 }: LayoutBasePaginaProps) {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
@@ -30,7 +30,6 @@ function LayoutBasePagina({
         height="100%"
         display="flex"
         flexDirection="column"
-        gap={1}
         className={styles.container}
       >
         <Box
@@ -47,7 +46,7 @@ function LayoutBasePagina({
           )}
           <Typography variant="h5">{titulo}</Typography>
         </Box>
-        <Box>{barraFerramenta}</Box>
+        <Box>{FerramentaListagem}</Box>
         <Box>{children}</Box>
       </Box>
     </>

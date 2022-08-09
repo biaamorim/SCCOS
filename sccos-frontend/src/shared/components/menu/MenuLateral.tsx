@@ -72,6 +72,7 @@ function MenuLateral({ children }: Props) {
           height="100%"
           display="flex"
           flexDirection="column"
+          className={styles.container}
         >
           <Box
             width="100%"
@@ -85,7 +86,7 @@ function MenuLateral({ children }: Props) {
               src="/assets/react.svg"
               sx={{ height: theme.spacing(8), width: theme.spacing(8) }}
             />
-            <Box padding={theme.spacing(4)}>Nome</Box>
+            {/*<Box padding={theme.spacing(4)}>Nome</Box>*/}
           </Box>
           <Divider />
           <Box flex={1}>

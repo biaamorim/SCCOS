@@ -1,11 +1,11 @@
-import BarraFerramenta from "../../shared/components/barra-ferramenta/BarraFerramenta";
+import FerramentaListagem from "../../shared/components/ferramenta-listagem/FerramentasListagem";
 import LayoutBasePagina from "../../shared/layouts/LayoutBasePagina";
 
 function Dashboard() {
   return (
     <LayoutBasePagina
       titulo="Página Inicial"
-      barraFerramenta={<>Barra de Feramenta</>}
+      FerramentaListagem={<FerramentaListagem mostrarInputBusca />}
     >
       Testando
     </LayoutBasePagina>
