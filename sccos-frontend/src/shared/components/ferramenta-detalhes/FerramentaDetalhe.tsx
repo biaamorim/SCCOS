@@ -1,4 +1,4 @@
-import { Box, Button, Paper, Icon, Divider } from "@mui/material";
+import { Box, Button, Paper, Icon, Divider, Skeleton } from "@mui/material";
 import styles from "../../../ui/styles/ferramenta-detalhe/FerramentaDetalhe.module.scss";
 
 interface IFerramentaDetalheProps {
@@ -29,6 +29,7 @@ function FerramentaDetalhe({
 }: IFerramentaDetalheProps) {
   return (
     <Box
+      display="flex"
       gap={1}
       marginX={1}
       padding={1}
@@ -68,7 +69,6 @@ function FerramentaDetalhe({
           <p>Apagar</p>
         </Button>
       )}
-
       {mostrarBotaoNovo && (
         <Button
           className={styles.button}
@@ -79,7 +79,6 @@ function FerramentaDetalhe({
           <p>Novo</p>
         </Button>
       )}
-
       {mostrarBotaoVoltar && (
         <Button
           className={styles.button}
