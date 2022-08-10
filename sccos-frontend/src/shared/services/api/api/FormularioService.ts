@@ -1,7 +1,7 @@
 import { Environment } from "../../../environment";
 import { Api } from "../axios-config";
 
-interface IFormulario {
+export interface IFormulario {
   id: number;
   idServico: IServico;
   nomeOS: string;
@@ -14,7 +14,7 @@ interface IFormulario {
   updated_at: string;
 }
 
-interface IServico {
+export interface IServico {
   id: number;
   nome: string;
   tipo: string;
@@ -27,9 +27,9 @@ type TFormularioCount = {
   totalCount: number;
 };
 
-const getAll = async (filter = ""): Promise<TFormularioCount | Error> => {
+const getAll = async (): Promise<TFormularioCount | Error> => {
   try {
-    const { data, headers } = await Api.get(`/api/buscar/formulario${filter}`);
+    const { data, headers } = await Api.get(`/api/buscar/formulario`);
     if (data) {
       return {
         data,
