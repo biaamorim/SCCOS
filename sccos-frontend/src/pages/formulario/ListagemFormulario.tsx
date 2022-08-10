@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import FerramentasListagem from "../../shared/components/ferramenta-listagem/FerramentasListagem";
 import useDebounce from "../../shared/hooks/useDebounce";
 import LayoutBasePagina from "../../shared/layouts/LayoutBasePagina";
@@ -29,6 +29,7 @@ function ListagemFormulario() {
   const [rows, setRows] = useState<IFormulario[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -93,6 +94,7 @@ function ListagemFormulario() {
       barraFerramenta={
         <FerramentasListagem
           mostrarInputBusca
+          aoClicarEmNovo={() => navigate("/api/cadastro/formulario")}
           textoBusca={busca}
           aoMudarTextoBusca={(texto) =>
             setSearchParams({ busca: texto }, { replace: true })
@@ -122,7 +124,12 @@ function ListagemFormulario() {
                   <IconButton size="small" onClick={() => handleDelete(row.id)}>
                     <Icon>delete</Icon>
                   </IconButton>
-                  <IconButton size="small">
+                  <IconButton
+                    size="small"
+                    onClick={() =>
+                      navigate(`/api/atualizar/formulario/${row.id}`)
+                    }
+                  >
                     <Icon>edit</Icon>
                   </IconButton>
                 </TableCell>

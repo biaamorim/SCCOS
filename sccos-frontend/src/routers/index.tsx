@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "../pages/dashboard/Dashboard";
+import DetalhesFormulario from "../pages/formulario/DetalhesFormulario";
 import ListagemFormulario from "../pages/formulario/ListagemFormulario";
 import { useDrawerContext } from "../shared/contexts/DrawerContext";
 
@@ -16,7 +17,7 @@ function AppRouter() {
       {
         label: "Cadastro",
         icon: "add",
-        path: "/pagina-cadastro",
+        path: "/api/cadastro/formulario",
       },
       {
         label: "Listagem de Ordem de Serviço",
@@ -29,6 +30,8 @@ function AppRouter() {
     <Routes>
       <Route path="/pagina-inicial" element={<Dashboard />} />
       <Route path="/formulario" element={<ListagemFormulario />} />
+      <Route path="/api/atualizar/formulario/:id" element={<p>Detalhe</p>} />
+      <Route path="/api/cadastro/formulario" element={<DetalhesFormulario />} />
 
       <Route path="*" element={<Navigate to="/pagina-inicial" />} />
     </Routes>
