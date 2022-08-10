@@ -1,5 +1,6 @@
 import { Button, TextField, Box, Paper, Icon } from "@mui/material";
 import styles from "../../../ui/styles/ferramenta-listagem/FerramentaListagem.module.scss";
+import { Environment } from "../../environment";
 
 interface IFerramentasListagemProps {
   textoBusca?: string;
@@ -23,7 +24,7 @@ function FerramentasListagem({
       {mostrarInputBusca && (
         <TextField
           size="medium"
-          placeholder="Pesquise uma Ordem de Serviço"
+          placeholder={Environment.INPUT_DE_BUSCA}
           className={styles.textField}
           value={textoBusca}
           onChange={(e) => aoMudarTextoBusca?.(e.target.value)}
