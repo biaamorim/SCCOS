@@ -6,13 +6,13 @@ interface IFerramentaDetalheProps {
   mostrarBotaoVoltar?: boolean;
   mostrarBotaoApagar?: boolean;
   mostrarBotaoSalvar?: boolean;
-  mostrarBotaoSalvarVoltar?: boolean;
+  mostrarBotaoSalvarFechar?: boolean;
 
   aoClicarEmNovo?: () => void;
   aoClicarEmVoltar?: () => void;
   aoClicarEmApagar?: () => void;
   aoClicarEmSalvar?: () => void;
-  aoClicarEmSalvarEVoltar?: () => void;
+  aoClicarEmSalvarFechar?: () => void;
 }
 
 function FerramentaDetalhe({
@@ -20,12 +20,12 @@ function FerramentaDetalhe({
   mostrarBotaoVoltar = true,
   mostrarBotaoApagar = true,
   mostrarBotaoSalvar = true,
-  mostrarBotaoSalvarVoltar = false,
+  mostrarBotaoSalvarFechar = false,
   aoClicarEmNovo,
   aoClicarEmVoltar,
   aoClicarEmApagar,
   aoClicarEmSalvar,
-  aoClicarEmSalvarEVoltar,
+  aoClicarEmSalvarFechar,
 }: IFerramentaDetalheProps) {
   return (
     <Box
@@ -48,12 +48,12 @@ function FerramentaDetalhe({
         </Button>
       )}
 
-      {mostrarBotaoSalvarVoltar && (
+      {mostrarBotaoSalvarFechar && (
         <Button
           className={styles.button}
           variant="contained"
           startIcon={<Icon>save</Icon>}
-          onClick={aoClicarEmSalvarEVoltar}
+          onClick={aoClicarEmSalvarFechar}
         >
           <p>Salvar e Voltar</p>
         </Button>

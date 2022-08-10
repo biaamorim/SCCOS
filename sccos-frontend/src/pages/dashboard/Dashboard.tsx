@@ -6,7 +6,7 @@ function Dashboard() {
   return (
     <LayoutBasePagina
       titulo="Página Inicial"
-      barraFerramenta={<FerramentaDetalhe mostrarBotaoSalvarVoltar />}
+      barraFerramenta={<FerramentaDetalhe mostrarBotaoSalvarFechar />}
     >
       Testando
     </LayoutBasePagina>

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "../pages/dashboard/Dashboard";
+import ListagemFormulario from "../pages/formulario/ListagemFormulario";
 import { useDrawerContext } from "../shared/contexts/DrawerContext";
 
 function AppRouter() {
@@ -20,15 +21,16 @@ function AppRouter() {
       {
         label: "Listagem de Ordem de Serviço",
         icon: "list",
-        path: "/pagina-de-listagem",
+        path: "/formulario",
       },
     ]);
   }, []);
   return (
     <Routes>
       <Route path="/pagina-inicial" element={<Dashboard />} />
+      <Route path="/formulario" element={<ListagemFormulario />} />
 
-      {/*<Route path="*" element={<Navigate to="/pagina-inicial" />} />*/}
+      <Route path="*" element={<Navigate to="/pagina-inicial" />} />
     </Routes>
   );
 }
