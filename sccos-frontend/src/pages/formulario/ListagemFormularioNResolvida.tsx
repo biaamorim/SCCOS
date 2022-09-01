@@ -61,6 +61,21 @@ function ListagemFormularioNResolvida() {
     }
   };
 
+  const handleConfirme = (id: number) => {
+    if (confirm("Você realmente quer finalizar essa ordem de serviço?")) {
+      FormularioService.finalizarOs(id).then((result) => {
+        if (result instanceof Error) {
+          alert(result.message);
+        } else {
+          setRows((oldRows) => {
+            return [...oldRows.filter((oldRow) => oldRow.id !== id)];
+          });
+          alert("Ordem de serviço finalizado com sucesso");
+        }
+      });
+    }
+  };
+
   return (
     <LayoutBasePagina
       titulo="Listagem de Ordem de Serviço não resolvido"
@@ -104,6 +119,12 @@ function ListagemFormularioNResolvida() {
                     }
                   >
                     <Icon>edit</Icon>
+                  </IconButton>
+                  <IconButton
+                    size="small"
+                    onClick={() => handleConfirme(row.id)}
+                  >
+                    <Icon>check</Icon>
                   </IconButton>
                 </TableCell>
               </TableRow>

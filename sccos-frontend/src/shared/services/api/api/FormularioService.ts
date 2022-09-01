@@ -6,12 +6,12 @@ export interface IFormulario {
   idServico: IServico;
   nomeOS: string;
   nivel: number;
-  datahorasolicitacao: string;
-  realizada: boolean;
+  datahorasolicitacao?: string;
+  realizada?: boolean;
   descricao: string;
   local: string;
-  created_at: string;
-  updated_at: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface IServico {
@@ -113,9 +113,9 @@ const getFormularioPorServidor = async (filter = ""): Promise<any> => {
     );
   }
 };
-const getById = async (id: number): Promise<TFormularioCount | Error> => {
+const getById = async (id: number): Promise<Error | IServico> => {
   try {
-    const { data } = await Api.get(`/api/buscar/formulario${id}`);
+    const { data } = await Api.get(`/api/buscar/formulario/${id}`);
     if (data) {
       return data;
     }
@@ -126,6 +126,24 @@ const getById = async (id: number): Promise<TFormularioCount | Error> => {
     return new Error(
       (error as { message: string }).message ||
         "Erro ao listar as ordens de serviço"
+    );
+  }
+};
+const finalizarOs = async (id: number): Promise<Boolean | Error> => {
+  try {
+    const { data } = await Api.post<Boolean>(
+      `/api/formulario/resolvendo/${id}`
+    );
+    if (data) {
+      return data;
+    }
+
+    return new Error("Erro ao criar a ordens de serviço");
+  } catch (error) {
+    console.error(error);
+    return new Error(
+      (error as { message: string }).message ||
+        "Erro ao criar as ordens de serviço"
     );
   }
 };
@@ -140,13 +158,12 @@ const create = async (
     if (data) {
       return data.id;
     }
-
     return new Error("Erro ao criar a ordens de serviço");
   } catch (error) {
     console.error(error);
     return new Error(
       (error as { message: string }).message ||
-        "Erro ao criar as ordens de serviço"
+        "Erro ao criar a ordem de serviço"
     );
   }
 };
@@ -181,6 +198,7 @@ export const FormularioService = {
   getFormularioNResolvido,
   getFormularioResolvido,
   getFormularioPorServidor,
+  finalizarOs,
   create,
   detele,
   update,

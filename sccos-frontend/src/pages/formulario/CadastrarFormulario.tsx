@@ -1,6 +1,8 @@
 import { LinearProgress, TextField } from "@mui/material";
+import { create } from "@mui/material/styles/createTransitions";
+import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import FerramentaDetalhe from "../../shared/components/ferramenta-detalhes/FerramentaDetalhe";
 import VTextField from "../../shared/forms/VTextField";
@@ -12,62 +14,60 @@ import {
 } from "../../shared/services/api/api/FormularioService";
 
 interface FormProps {
-  nomeOs: string;
+  id: number;
+  idServico: IServico;
+  nomeOS: string;
+  nivel: number;
+  datahorasolicitacao?: string;
   descricao: string;
   local: string;
-  nivel: number;
+  created_at?: string;
+  updated_at?: string;
 }
 
 function DetalhesFormulario() {
-  const { id } = useParams<"id">();
   const [rows, setRows] = useState<IFormulario[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [totalCount, setTotalCount] = useState(0);
   const [nome, setNome] = useState("");
 
-  useEffect(() => {
-    setIsLoading(true);
-    FormularioService.getById(Number(id)).then((result) => {
-      setIsLoading(true);
-      if (result instanceof Error) {
-        alert(result.message);
-        navigate("/formulario");
-      } else {
-        setNome(result.nome);
-      }
-    });
-  }, [id]);
+  const formRef = useRef<FormHandles>(null);
 
-  /*const handleSave = (dados: FormProps) => {
-    FormularioService.update(Number(id), { id: Number(id), ... dados})
-    .then((result) => {
+  const handleSave = (dados: FormProps) => {
+    setIsLoading(true);
+    FormularioService.create(dados).then((result) => {
       setIsLoading(false);
       if (result instanceof Error) {
         alert(result.message);
-      } else navigate("/api/buscar/formulario/naoresolvida");
+      } else {
+        navigate(`/api/buscar/formulario/${result}`);
+      }
     });
   };
-  };*/
 
   return (
     <LayoutBasePagina
-      titulo={"Edição de Ordem de serviço"}
+      titulo="Cadastro de Ordem de Serviço"
       barraFerramenta={
         <FerramentaDetalhe
           mostrarBotaoSalvarFechar
-          mostrarBotaoNovo
+          mostrarBotaoNovo={false}
           mostrarBotaoApagar={false}
-          aoClicarEmNovo={() => navigate("/api/cadastro/formulario")}
+          aoClicarEmSalvar={() => formRef.current?.submitForm()}
+          aoClicarEmSalvarFechar={() => formRef.current?.submitForm()}
           aoClicarEmVoltar={() =>
             navigate("/api/buscar/formulario/naoresolvida")
           }
         />
       }
     >
-      <Form onSubmit={console.log}>
-        <VTextField name="nomeOS" />
-        <button>Submit</button>
+      <Form ref={formRef} onSubmit={handleSave}>
+        <VTextField placeholder="Nome da Ordem de Serviço" name="nomeOS" />
+        <VTextField placeholder="Descrição" name="descricao" />
+        <VTextField placeholder="Local" name="local" />
+        <VTextField placeholder="Nível de Urgência" name="nivel" />
+        <VTextField placeholder="Id servidor" name="idServidor" />
       </Form>
     </LayoutBasePagina>
   );

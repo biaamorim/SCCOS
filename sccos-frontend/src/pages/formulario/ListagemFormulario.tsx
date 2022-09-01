@@ -107,14 +107,6 @@ function ListagemFormulario() {
                   <IconButton size="small" onClick={() => handleDelete(row.id)}>
                     <Icon>delete</Icon>
                   </IconButton>
-                  <IconButton
-                    size="small"
-                    onClick={() =>
-                      navigate(`/api/atualizar/formulario/${row.id}`)
-                    }
-                  >
-                    <Icon>edit</Icon>
-                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}

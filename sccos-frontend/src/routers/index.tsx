@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "../pages/dashboard/Dashboard";
+import CadastrarFormulario from "../pages/formulario/CadastrarFormulario";
 import DetalhesFormulario from "../pages/formulario/DetalhesFormulario";
 import ListagemFormulario from "../pages/formulario/ListagemFormulario";
 import ListagemFormularioNResolvida from "../pages/formulario/ListagemFormularioNResolvida";
@@ -46,10 +47,13 @@ function AppRouter() {
       <Route path="/formulario" element={<ListagemFormulario />} />
 
       <Route
-        path="/api/atualizar/formulario/:2"
+        path="/api/atualizar/formulario/:id"
         element={<DetalhesFormulario />}
       />
-      <Route path="/api/cadastro/formulario" element={<DetalhesFormulario />} />
+      <Route
+        path="/api/cadastro/formulario"
+        element={<CadastrarFormulario />}
+      />
 
       <Route
         path="/api/buscar/formulario/naoresolvida"
