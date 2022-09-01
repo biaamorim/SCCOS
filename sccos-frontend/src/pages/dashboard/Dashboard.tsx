@@ -8,7 +8,7 @@ function Dashboard() {
       titulo="Página Inicial"
       barraFerramenta={<FerramentaDetalhe mostrarBotaoSalvarFechar />}
     >
-      Testando
+      <h1>Em produção...</h1>
     </LayoutBasePagina>
   );
 }

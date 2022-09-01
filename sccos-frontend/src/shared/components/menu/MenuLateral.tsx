@@ -19,6 +19,7 @@ import React, { ReactNode } from "react";
 import { useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 import { useDrawerContext } from "../../contexts/DrawerContext";
 import styles from "../../../ui/styles/MenuLateral.module.scss";
+import { useAuthContext } from "../../contexts";
 
 interface Props {
   children: ReactNode;
@@ -54,7 +55,7 @@ function MenuLateral({ children }: Props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const { isDrawerOpen, toggleDrawerOpen, drawerOption } = useDrawerContext();
-
+  const { lougout } = useAuthContext();
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleDrawerClose = () => {
@@ -101,6 +102,13 @@ function MenuLateral({ children }: Props) {
                 />
               ))}
             </List>
+          </Box>
+          <Box>
+            <ListItemButton onClick={lougout}>
+              <ListItemIcon>
+                <Icon>logout</Icon>
+              </ListItemIcon>
+            </ListItemButton>
           </Box>
         </Box>
       </Drawer>

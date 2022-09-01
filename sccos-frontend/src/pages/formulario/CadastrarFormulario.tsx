@@ -1,5 +1,12 @@
-import { LinearProgress, TextField } from "@mui/material";
+import {
+  Grid,
+  LinearProgress,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { create } from "@mui/material/styles/createTransitions";
+import { Box } from "@mui/system";
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
 import { useEffect, useRef, useState } from "react";
@@ -63,11 +70,45 @@ function DetalhesFormulario() {
       }
     >
       <Form ref={formRef} onSubmit={handleSave}>
-        <VTextField placeholder="Nome da Ordem de Serviço" name="nomeOS" />
-        <VTextField placeholder="Descrição" name="descricao" />
-        <VTextField placeholder="Local" name="local" />
-        <VTextField placeholder="Nível de Urgência" name="nivel" />
-        <VTextField placeholder="Id servidor" name="idServidor" />
+        <Box
+          margin={2}
+          display="flex"
+          flexDirection="column"
+          component={Paper}
+          variant="outlined"
+        >
+          <Grid container direction="column" padding={2} spacing={2}>
+            <Grid item>
+              <Typography variant="h6">Geral</Typography>
+            </Grid>
+            <Grid container item direction="row" spacing={2}>
+              <Grid item xs={10} sm={8} md={6} lg={4} xl={10} display="flex">
+                <VTextField
+                  fullWidth
+                  label="Nome da Ordem de Serviço"
+                  name="nomeOS"
+                />
+                <Grid item xs={5} padding={2} paddingTop={0}>
+                  <VTextField fullWidth label="Local" name="local" />
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid container item direction="row" spacing={2}>
+              <Grid item xs={6} sm={8} md={6} lg={4} xl={7} display="flex">
+                <VTextField fullWidth label="Descrição" name="descricao" />
+              </Grid>
+              <Grid
+                item
+                xs={5}
+                padding={2}
+                paddingTop={0}
+                flexDirection="column"
+              >
+                <VTextField fullWidth label="Nível de Urgência" name="nivel" />
+              </Grid>
+            </Grid>
+          </Grid>
+        </Box>
       </Form>
     </LayoutBasePagina>
   );
