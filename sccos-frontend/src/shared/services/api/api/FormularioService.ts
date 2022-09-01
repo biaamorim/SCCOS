@@ -27,7 +27,7 @@ type TFormularioCount = {
   totalCount: number;
 };
 
-const getAll = async (): Promise<TFormularioCount | Error> => {
+const getAll = async (): Promise<TFormularioCount | Error | any> => {
   try {
     const { data, headers } = await Api.get(`/api/buscar/formulario`);
     if (data) {
@@ -49,9 +49,11 @@ const getAll = async (): Promise<TFormularioCount | Error> => {
   }
 };
 
-const getFormularioNResolvido = async (filter = ""): Promise<any> => {
+const getFormularioNResolvido = async (): Promise<TFormularioCount | any> => {
   try {
-    const { data, headers } = await Api.get(`/api/buscar/formulario${filter}`);
+    const { data, headers } = await Api.get(
+      "/api/buscar/formulario/naoresolvido"
+    );
     if (data) {
       return {
         data,
@@ -60,19 +62,18 @@ const getFormularioNResolvido = async (filter = ""): Promise<any> => {
         ),
       };
     }
-
-    return new Error("Erro ao listar as ordens de serviço");
+    return new Error("Erro ao listar as ordens de serviço não resolvidas");
   } catch (error) {
     console.error(error);
     return new Error(
       (error as { message: string }).message ||
-        "Erro ao listar as ordens de serviço"
+        "Erro ao listar as ordens de serviço não resolvidas"
     );
   }
 };
-const getFormularioResolvido = async (filter = ""): Promise<any> => {
+const getFormularioResolvido = async (): Promise<TFormularioCount | any> => {
   try {
-    const { data, headers } = await Api.get(`/api/buscar/formulario${filter}`);
+    const { data, headers } = await Api.get("/api/buscar/formulario/resolvido");
     if (data) {
       return {
         data,
@@ -82,12 +83,12 @@ const getFormularioResolvido = async (filter = ""): Promise<any> => {
       };
     }
 
-    return new Error("Erro ao listar as ordens de serviço");
+    return new Error("Erro ao listar as ordens de serviço resolvidas");
   } catch (error) {
     console.error(error);
     return new Error(
       (error as { message: string }).message ||
-        "Erro ao listar as ordens de serviço"
+        "Erro ao listar as ordens de serviço resolvidas"
     );
   }
 };

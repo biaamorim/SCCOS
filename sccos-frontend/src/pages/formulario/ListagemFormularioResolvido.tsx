@@ -19,7 +19,7 @@ import {
   IFormulario,
 } from "../../shared/services/api/api/FormularioService";
 
-function ListagemFormulario() {
+function ListagemFormularioResolvido() {
   const [searchParams, setSearchParams] = useSearchParams();
   const debounce = useDebounce();
   const busca = useMemo(() => {
@@ -34,7 +34,7 @@ function ListagemFormulario() {
   useEffect(() => {
     setIsLoading(true);
     debounce(() => {
-      FormularioService.getAll().then((result) => {
+      FormularioService.getFormularioResolvido().then((result) => {
         if (result instanceof Error) {
           alert(result.message);
         } else {
@@ -46,18 +46,8 @@ function ListagemFormulario() {
     });
   }, [busca]);
 
-  useEffect(() => {
-    FormularioService.getFormularioPorServidor().then((result) => {
-      if (result instanceof Error) {
-        alert(result.message);
-      } else {
-        console.log(result.data[0].idServico);
-      }
-    });
-  }, [busca]);
-
   const handleDelete = (id: number) => {
-    if (confirm("Reamente quer apagar a Ordem de serviço")) {
+    if (confirm("Realmente quer apagar a Ordem de serviço")) {
       FormularioService.detele(id).then((result) => {
         if (result instanceof Error) {
           alert(result.message);
@@ -73,7 +63,7 @@ function ListagemFormulario() {
 
   return (
     <LayoutBasePagina
-      titulo="Listagem de Ordem de Serviço"
+      titulo="Listagem de Ordem de Serviço Resolvidas"
       barraFerramenta={
         <FerramentasListagem
           mostrarInputBusca
@@ -112,9 +102,7 @@ function ListagemFormulario() {
                     onClick={() =>
                       navigate(`/api/atualizar/formulario/${row.id}`)
                     }
-                  >
-                    <Icon>edit</Icon>
-                  </IconButton>
+                  ></IconButton>
                 </TableCell>
               </TableRow>
             ))}
@@ -125,4 +113,4 @@ function ListagemFormulario() {
   );
 }
 
-export default ListagemFormulario;
+export default ListagemFormularioResolvido;
