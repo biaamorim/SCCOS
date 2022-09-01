@@ -30,7 +30,6 @@ function LayoutBasePagina({
         height="100%"
         display="flex"
         flexDirection="column"
-        gap={1}
         className={styles.container}
       >
         <Box

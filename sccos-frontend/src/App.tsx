@@ -5,6 +5,7 @@ import Header from "./shared/components/header/Header";
 import MenuLateral from "./shared/components/menu/MenuLateral";
 import DrawerProvider from "./shared/contexts/DrawerContext";
 import { LightTheme } from "./shared/themes";
+import styles from "../src/ui/styles/global/global.scss";
 
 function App() {
   return (
